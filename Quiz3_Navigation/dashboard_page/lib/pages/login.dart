@@ -84,7 +84,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
 
-                  // --- HEADER TEXT ---
+                  // HEADER TEXT
                   const Positioned(
                     left: 38,
                     top: 32,
@@ -99,7 +99,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
 
-                  // --- SUBTITLE ---
+                  // SUBTITLE
                   Positioned(
                     left: 118,
                     top: 289,
@@ -114,7 +114,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
 
-                  // --- EMAIL INPUT ---
+                  // EMAIL INPUT
                   Positioned(
                     left: 65,
                     top: 349,
@@ -163,7 +163,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
 
-                  // --- PASSWORD INPUT ---
+                  // PASSWORD INPUT
                   Positioned(
                     left: 65.85,
                     top: 439,
@@ -224,8 +224,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
 
-                  // --- LOGIN BUTTON ---
-                  // Blue Background
+                  // LOGIN BUTTON
                   Positioned(
                     left: 65,
                     top: 539,
@@ -272,7 +271,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
 
-                  // --- FOOTER ---
+                  // FOOTER
                   Positioned(
                     left: 129,
                     top: 619,

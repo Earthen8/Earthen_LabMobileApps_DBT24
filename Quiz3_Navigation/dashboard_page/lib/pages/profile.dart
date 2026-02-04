@@ -140,13 +140,13 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  // --- REUSABLE COMPONENTS ---
+  // REUSABLE COMPONENTS
 
   Widget _buildRedHeader(BuildContext context) {
     return Container(
       width: double.infinity,
       decoration: const BoxDecoration(
-        color: Color(0xFFD32F2F), // Academic Red
+        color: Color(0xFFD32F2F),
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(24),
           bottomRight: Radius.circular(24),
@@ -213,7 +213,7 @@ class ProfilePage extends StatelessWidget {
               ),
               child: const Center(
                 child: Text(
-                  "JD", // Initials Fallback
+                  "EK",
                   style: TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.bold,
@@ -238,7 +238,7 @@ class ProfilePage extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         const Text(
-          "John Doe",
+          "Earthen Krisdian",
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.bold,
@@ -247,7 +247,7 @@ class ProfilePage extends StatelessWidget {
         ),
         const SizedBox(height: 4),
         Text(
-          "ID: 20240156 • Computer Science",
+          "ID: 23502410009 • Software Engineer",
           style: TextStyle(fontSize: 14, color: Colors.grey[600]),
         ),
       ],

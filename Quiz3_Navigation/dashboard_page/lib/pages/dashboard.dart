@@ -20,7 +20,7 @@ class DashboardPage extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            // 1. HEADER (Fixed at the top)
+            // HEADER
             Container(
               color: const Color(0xFFC8102E),
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
@@ -40,7 +40,7 @@ class DashboardPage extends StatelessWidget {
               ),
             ),
 
-            // 2. SCROLLABLE AREA
+            // SCROLLABLE AREA
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
