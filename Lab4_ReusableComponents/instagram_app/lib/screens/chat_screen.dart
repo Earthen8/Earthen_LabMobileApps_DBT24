@@ -21,42 +21,58 @@ class _ChatListScreenState extends State<ChatListScreen> {
         centerTitle: true,
         title: Row(
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const Text(
               '3arthen',
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
-                fontSize: 22,
+                fontSize: 20,
               ),
             ),
             const SizedBox(width: 4),
-            const Icon(
-              Icons.keyboard_arrow_down,
-              color: Colors.white,
-              size: 20,
-            ),
-            const SizedBox(width: 8),
-            Container(
-              width: 10,
-              height: 10,
-              decoration: const BoxDecoration(
-                color: Colors.red,
-                shape: BoxShape.circle,
-              ),
+            Stack(
+              clipBehavior: Clip.none,
+              children: [
+                const Icon(
+                  Icons.keyboard_arrow_down,
+                  color: Colors.white,
+                  size: 18,
+                ),
+                Positioned(
+                  top: 0,
+                  right: -4,
+                  child: Container(
+                    width: 8,
+                    height: 8,
+                    decoration: const BoxDecoration(
+                      color: Colors.red,
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
+        // Ikon Kanan Atas
         actions: [
           IconButton(
-            icon: const Icon(Icons.more_horiz, color: Colors.white, size: 28),
+            constraints: const BoxConstraints(),
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            icon: const Icon(Icons.more_horiz, color: Colors.white, size: 24),
             onPressed: () {},
           ),
           IconButton(
-            icon: const Icon(Icons.auto_graph, color: Colors.white, size: 26),
+            constraints: const BoxConstraints(),
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            icon: const Icon(Icons.auto_graph, color: Colors.white, size: 24),
             onPressed: () {},
           ),
           IconButton(
+            constraints: const BoxConstraints(),
+            padding: const EdgeInsets.only(left: 8, right: 16),
             icon: const Icon(Icons.edit_square, color: Colors.white, size: 24),
             onPressed: () {},
           ),
@@ -64,9 +80,9 @@ class _ChatListScreenState extends State<ChatListScreen> {
       ),
       body: Column(
         children: [
-          // Tab Pills
+          // Tab Pills (Primary, General, Requests)
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: Row(
               children: [
                 _buildTabPill('Primary', 5),
@@ -81,7 +97,7 @@ class _ChatListScreenState extends State<ChatListScreen> {
           // Chat List
           Expanded(
             child: ListView.builder(
-              padding: const EdgeInsets.only(top: 8),
+              padding: const EdgeInsets.only(top: 4),
               itemCount: _getChatData().length,
               itemBuilder: (context, index) {
                 final chat = _getChatData()[index];
@@ -94,54 +110,57 @@ class _ChatListScreenState extends State<ChatListScreen> {
     );
   }
 
+  // Widget Tab Pill yang diperbarui
   Widget _buildTabPill(String title, int? count) {
     final isSelected = selectedTab == title;
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          selectedTab = title;
-        });
-      },
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        decoration: BoxDecoration(
-          color: isSelected ? Colors.white : const Color(0xFF262626),
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            if (count != null && isSelected) ...[
-              Container(
-                width: 8,
-                height: 8,
-                decoration: const BoxDecoration(
-                  color: Color(0xFF3797EF),
-                  shape: BoxShape.circle,
+    return Expanded(
+      child: GestureDetector(
+        onTap: () {
+          setState(() {
+            selectedTab = title;
+          });
+        },
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          decoration: BoxDecoration(
+            color: isSelected ? Colors.white : const Color(0xFF262626),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              if (count != null && isSelected) ...[
+                Container(
+                  width: 6,
+                  height: 6,
+                  decoration: const BoxDecoration(
+                    color: Color(0xFF3797EF),
+                    shape: BoxShape.circle,
+                  ),
                 ),
-              ),
-              const SizedBox(width: 6),
-            ],
-            Text(
-              title,
-              style: TextStyle(
-                color: isSelected ? Colors.black : Colors.grey[400],
-                fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
-                fontSize: 15,
-              ),
-            ),
-            if (count != null && isSelected) ...[
-              const SizedBox(width: 6),
+                const SizedBox(width: 4),
+              ],
               Text(
-                count.toString(),
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 15,
+                title,
+                style: TextStyle(
+                  color: isSelected ? Colors.black : Colors.grey[400],
+                  fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+                  fontSize: 13,
                 ),
               ),
+              if (count != null) ...[
+                const SizedBox(width: 4),
+                Text(
+                  count.toString(),
+                  style: TextStyle(
+                    color: isSelected ? Colors.black : Colors.grey[400],
+                    fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+                    fontSize: 13,
+                  ),
+                ),
+              ],
             ],
-          ],
+          ),
         ),
       ),
     );
@@ -267,7 +286,7 @@ class _ChatListItem extends StatelessWidget {
         );
       },
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         child: Row(
           children: [
             // Profile Picture with Story Border
@@ -282,17 +301,20 @@ class _ChatListItem extends StatelessWidget {
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Username with verified badge
+                  // Username
                   Row(
                     children: [
                       Flexible(
                         child: Text(
                           chat['username'],
-                          style: const TextStyle(
+                          style: TextStyle(
                             color: Colors.white,
-                            fontSize: 15,
-                            fontWeight: FontWeight.w500,
+                            fontSize: 14,
+                            fontWeight: chat['unreadCount'] > 0
+                                ? FontWeight.bold
+                                : FontWeight.w400,
                           ),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
@@ -308,9 +330,9 @@ class _ChatListItem extends StatelessWidget {
                       ],
                     ],
                   ),
-                  const SizedBox(height: 4),
 
-                  // Message or Status
+                  const SizedBox(height: 2),
+
                   Row(
                     children: [
                       Expanded(
@@ -322,9 +344,9 @@ class _ChatListItem extends StatelessWidget {
                             color: chat['unreadCount'] > 0
                                 ? Colors.white
                                 : Colors.grey[500],
-                            fontSize: 14,
+                            fontSize: 13,
                             fontWeight: chat['unreadCount'] > 0
-                                ? FontWeight.w500
+                                ? FontWeight.w700
                                 : FontWeight.normal,
                           ),
                           maxLines: 1,
@@ -337,12 +359,11 @@ class _ChatListItem extends StatelessWidget {
               ),
             ),
 
-            // Right Side (Unread indicator or Camera icon)
             const SizedBox(width: 12),
             if (chat['unreadCount'] > 0)
               Container(
-                width: 10,
-                height: 10,
+                width: 8,
+                height: 8,
                 decoration: const BoxDecoration(
                   color: Color(0xFF3797EF),
                   shape: BoxShape.circle,
@@ -361,7 +382,6 @@ class _ChatListItem extends StatelessWidget {
   }
 }
 
-// Reusable Profile Avatar Component with Story Border
 class _ProfileAvatar extends StatelessWidget {
   final String imageUrl;
   final bool hasStory;
@@ -409,7 +429,6 @@ class _ProfileAvatar extends StatelessWidget {
   }
 }
 
-// Chat Detail Screen
 class ChatDetailScreen extends StatelessWidget {
   final String username;
   final String profileImage;
@@ -424,164 +443,8 @@ class ChatDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () => Navigator.pop(context),
-        ),
-        title: Row(
-          children: [
-            CircleAvatar(
-              backgroundImage: NetworkImage(profileImage),
-              radius: 16,
-              backgroundColor: Colors.grey[800],
-            ),
-            const SizedBox(width: 10),
-            Expanded(
-              child: Text(
-                username,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-          ],
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.call, color: Colors.white),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: const Icon(Icons.videocam, color: Colors.white),
-            onPressed: () {},
-          ),
-        ],
-      ),
-      body: Column(
-        children: [
-          Expanded(
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CircleAvatar(
-                    backgroundImage: NetworkImage(profileImage),
-                    radius: 50,
-                    backgroundColor: Colors.grey[800],
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    username,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    'Instagram • @${username.toLowerCase().replaceAll(' ', '_')}',
-                    style: TextStyle(color: Colors.grey[500], fontSize: 14),
-                  ),
-                  const SizedBox(height: 24),
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF262626),
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 24,
-                        vertical: 10,
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                    child: const Text(
-                      'View profile',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 14,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-
-          // Message Input Area
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-            decoration: BoxDecoration(
-              color: Colors.black,
-              border: Border(top: BorderSide(color: Colors.grey[900]!)),
-            ),
-            child: SafeArea(
-              child: Row(
-                children: [
-                  // Camera Button
-                  Container(
-                    width: 36,
-                    height: 36,
-                    decoration: const BoxDecoration(
-                      color: Color(0xFF3797EF),
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Icon(
-                      Icons.camera_alt,
-                      color: Colors.white,
-                      size: 20,
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-
-                  // Message Input Field
-                  Expanded(
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 10,
-                      ),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF262626),
-                        borderRadius: BorderRadius.circular(24),
-                        border: Border.all(color: Colors.grey[800]!, width: 1),
-                      ),
-                      child: Text(
-                        'Message...',
-                        style: TextStyle(color: Colors.grey[500], fontSize: 15),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-
-                  // Voice Message Button
-                  Icon(Icons.mic, color: Colors.grey[400], size: 26),
-                  const SizedBox(width: 12),
-
-                  // Image/Gallery Button
-                  Icon(Icons.image, color: Colors.grey[400], size: 26),
-                  const SizedBox(width: 4),
-
-                  // Sticker Button
-                  Icon(
-                    Icons.emoji_emotions_outlined,
-                    color: Colors.grey[400],
-                    size: 26,
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
+      appBar: AppBar(title: Text(username)),
+      body: Center(child: Text("Chat with $username")),
     );
   }
 }

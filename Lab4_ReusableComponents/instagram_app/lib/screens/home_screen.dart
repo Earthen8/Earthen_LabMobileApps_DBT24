@@ -5,26 +5,20 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Menghitung lebar agar muat 3.5 story
     final double screenWidth = MediaQuery.of(context).size.width;
     final double storyItemWidth = screenWidth / 3.5;
-    final double storyCircleRadius =
-        (storyItemWidth - 20) / 2; // Radius dinamis dikurangi padding
+    final double storyCircleRadius = (storyItemWidth - 20) / 2;
 
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.black,
         elevation: 0,
-        centerTitle: true, // Pastikan Logo di Tengah
+        centerTitle: true,
         // 1. Tombol + di Ujung Kiri
         leading: IconButton(
           onPressed: () {},
-          icon: const Icon(
-            Icons.add_box_outlined,
-            color: Colors.white,
-            size: 28,
-          ),
+          icon: const Icon(Icons.add, color: Colors.white, size: 32),
         ),
 
         // 2. Tulisan Instagram di Tengah
@@ -44,7 +38,7 @@ class HomeScreen extends StatelessWidget {
               size: 28,
             ),
           ),
-          const SizedBox(width: 8), // Sedikit margin kanan
+          const SizedBox(width: 8),
         ],
       ),
 
@@ -52,24 +46,21 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           children: [
             // --- Stories Section ---
-            // Tinggi container disesuaikan dengan besarnya story baru
             SizedBox(
               height: storyItemWidth + 30,
               child: ListView.builder(
-                // Menggunakan builder biasa agar kontrol width lebih mudah
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                 itemCount: _getStories().length,
                 itemBuilder: (context, index) {
                   final story = _getStories()[index];
                   return SizedBox(
-                    width: storyItemWidth, // Lebar dipatok agar muat 3.5
+                    width: storyItemWidth,
                     child: Column(
                       children: [
                         Stack(
                           alignment: Alignment.center,
                           children: [
-                            // Gradient Border
                             Container(
                               width: storyCircleRadius * 2 + 6,
                               height: storyCircleRadius * 2 + 6,
@@ -112,15 +103,13 @@ class HomeScreen extends StatelessWidget {
                                 bottom: 2,
                                 right: 2,
                                 child: Container(
-                                  padding: const EdgeInsets.all(
-                                    3,
-                                  ), // Padding badge diperbesar
+                                  padding: const EdgeInsets.all(3),
                                   decoration: const BoxDecoration(
                                     color: Colors.black,
                                     shape: BoxShape.circle,
                                   ),
                                   child: const CircleAvatar(
-                                    radius: 12, // Badge diperbesar
+                                    radius: 12,
                                     backgroundColor: Color(0xFF0095F6),
                                     child: Icon(
                                       Icons.add,
@@ -140,7 +129,7 @@ class HomeScreen extends StatelessWidget {
                             story['username'],
                             style: const TextStyle(
                               color: Colors.white,
-                              fontSize: 13, // Font story diperbesar
+                              fontSize: 13,
                             ),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
@@ -173,10 +162,10 @@ class HomeScreen extends StatelessWidget {
   // --- Mock Data ---
   List<Map<String, dynamic>> _getStories() => [
     {'username': 'Your story', 'imageUrl': 'https://i.pravatar.cc/150?img=60'},
-    {'username': 'sushethio_', 'imageUrl': 'https://i.pravatar.cc/150?img=1'},
-    {'username': 'eko.ariawan', 'imageUrl': 'https://i.pravatar.cc/150?img=2'},
-    {'username': 'tanssg', 'imageUrl': 'https://i.pravatar.cc/150?img=3'},
-    {'username': 'bloomberg', 'imageUrl': 'https://i.pravatar.cc/150?img=4'},
+    {'username': 'prabowo', 'imageUrl': 'https://i.pravatar.cc/150?img=1'},
+    {'username': 'jokowi', 'imageUrl': 'https://i.pravatar.cc/150?img=2'},
+    {'username': 'kresna', 'imageUrl': 'https://i.pravatar.cc/150?img=3'},
+    {'username': 'noel', 'imageUrl': 'https://i.pravatar.cc/150?img=4'},
   ];
 
   List<Map<String, dynamic>> _getPosts() => [
