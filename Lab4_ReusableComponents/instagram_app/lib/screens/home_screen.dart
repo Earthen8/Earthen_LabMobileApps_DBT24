@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../core/colors.dart';
+import '../core/constants.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -10,9 +12,9 @@ class HomeScreen extends StatelessWidget {
     final double storyCircleRadius = (storyItemWidth - 20) / 2;
 
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: AppColors.mobileBackgroundColor,
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: AppColors.mobileBackgroundColor,
         elevation: 0,
         centerTitle: true,
         // 1. Tombol + di Ujung Kiri
@@ -51,9 +53,9 @@ class HomeScreen extends StatelessWidget {
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                itemCount: _getStories().length,
+                itemCount: storyData.length,
                 itemBuilder: (context, index) {
-                  final story = _getStories()[index];
+                  final story = storyData[index];
                   return SizedBox(
                     width: storyItemWidth,
                     child: Column(
@@ -71,11 +73,7 @@ class HomeScreen extends StatelessWidget {
                                     : const LinearGradient(
                                         begin: Alignment.topRight,
                                         end: Alignment.bottomLeft,
-                                        colors: [
-                                          Color(0xFFC913B9),
-                                          Color(0xFFF9373F),
-                                          Color(0xFFFECD00),
-                                        ],
+                                        colors: AppColors.storyBorderColor,
                                       ),
                               ),
                             ),
@@ -85,9 +83,9 @@ class HomeScreen extends StatelessWidget {
                               height: storyCircleRadius * 2,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: Colors.black,
+                                color: AppColors.blackColor,
                                 border: Border.all(
-                                  color: Colors.black,
+                                  color: AppColors.blackColor,
                                   width: 3,
                                 ),
                               ),
@@ -105,7 +103,7 @@ class HomeScreen extends StatelessWidget {
                                 child: Container(
                                   padding: const EdgeInsets.all(3),
                                   decoration: const BoxDecoration(
-                                    color: Colors.black,
+                                    color: AppColors.blackColor,
                                     shape: BoxShape.circle,
                                   ),
                                   child: const CircleAvatar(
@@ -114,7 +112,7 @@ class HomeScreen extends StatelessWidget {
                                     child: Icon(
                                       Icons.add,
                                       size: 16,
-                                      color: Colors.white,
+                                      color: AppColors.whiteColor,
                                     ),
                                   ),
                                 ),
@@ -128,7 +126,7 @@ class HomeScreen extends StatelessWidget {
                           child: Text(
                             story['username'],
                             style: const TextStyle(
-                              color: Colors.white,
+                              color: AppColors.whiteColor,
                               fontSize: 13,
                             ),
                             maxLines: 1,
@@ -148,9 +146,9 @@ class HomeScreen extends StatelessWidget {
             ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: _getPosts().length,
+              itemCount: postData.length,
               itemBuilder: (context, index) {
-                return PostItem(post: _getPosts()[index]);
+                return PostItem(post: postData[index]);
               },
             ),
           ],
@@ -159,64 +157,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  // --- Mock Data ---
-  List<Map<String, dynamic>> _getStories() => [
-    {'username': 'Your story', 'imageUrl': 'https://i.pravatar.cc/150?img=60'},
-    {'username': 'prabowo', 'imageUrl': 'https://i.pravatar.cc/150?img=1'},
-    {'username': 'jokowi', 'imageUrl': 'https://i.pravatar.cc/150?img=2'},
-    {'username': 'kresna', 'imageUrl': 'https://i.pravatar.cc/150?img=3'},
-    {'username': 'noel', 'imageUrl': 'https://i.pravatar.cc/150?img=4'},
-  ];
 
-  List<Map<String, dynamic>> _getPosts() => [
-    {
-      'username': 'bloombergtechnoz',
-      'profileImage': 'https://i.pravatar.cc/150?img=4',
-      'images': ['https://picsum.photos/800/800?random=1'],
-      'likes': '1,143',
-      'caption': 'Daftar orang terkaya Indonesia Februari 2026...',
-      'timeAgo': '19 hours ago',
-    },
-    {
-      'username': 'natgeo',
-      'profileImage': 'https://i.pravatar.cc/150?img=10',
-      'images': [
-        'https://picsum.photos/800/1000?random=2',
-        'https://picsum.photos/800/1000?random=3',
-        'https://picsum.photos/800/1000?random=4',
-      ],
-      'likes': '45,201',
-      'caption': 'Exploring the depths of the ocean.',
-      'timeAgo': '2 hours ago',
-    },
-    {
-      'username': 'eko.ariawan',
-      'profileImage': 'https://i.pravatar.cc/150?img=2',
-      'images': ['https://picsum.photos/800/800?random=5'],
-      'likes': '89',
-      'caption': 'Coding late night with Flutter 💙',
-      'timeAgo': '5 hours ago',
-    },
-    {
-      'username': 'travel_addict',
-      'profileImage': 'https://i.pravatar.cc/150?img=12',
-      'images': [
-        'https://picsum.photos/800/600?random=6',
-        'https://picsum.photos/800/600?random=7',
-      ],
-      'likes': '2,300',
-      'caption': 'Missing Japan 🇯🇵',
-      'timeAgo': '1 day ago',
-    },
-    {
-      'username': 'tech_daily',
-      'profileImage': 'https://i.pravatar.cc/150?img=15',
-      'images': ['https://picsum.photos/800/800?random=8'],
-      'likes': '560',
-      'caption': 'New AI tools released today!',
-      'timeAgo': '2 days ago',
-    },
-  ];
 }
 
 // --- Post Item Widget ---

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../core/colors.dart';
+import '../core/constants.dart';
 
 class ChatListScreen extends StatefulWidget {
   const ChatListScreen({super.key});
@@ -14,9 +15,9 @@ class _ChatListScreenState extends State<ChatListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: AppColors.mobileBackgroundColor,
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: AppColors.mobileBackgroundColor,
         elevation: 0,
         centerTitle: true,
         title: Row(
@@ -26,7 +27,7 @@ class _ChatListScreenState extends State<ChatListScreen> {
             const Text(
               '3arthen',
               style: TextStyle(
-                color: Colors.white,
+                color: AppColors.whiteColor,
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
               ),
@@ -98,9 +99,9 @@ class _ChatListScreenState extends State<ChatListScreen> {
           Expanded(
             child: ListView.builder(
               padding: const EdgeInsets.only(top: 4),
-              itemCount: _getChatData().length,
+              itemCount: chatData.length,
               itemBuilder: (context, index) {
-                final chat = _getChatData()[index];
+                final chat = chatData[index];
                 return _ChatListItem(chat: chat);
               },
             ),
@@ -123,7 +124,7 @@ class _ChatListScreenState extends State<ChatListScreen> {
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: 8),
           decoration: BoxDecoration(
-            color: isSelected ? Colors.white : const Color(0xFF262626),
+            color: isSelected ? AppColors.whiteColor : AppColors.darkGreyColor,
             borderRadius: BorderRadius.circular(8),
           ),
           child: Row(
@@ -134,7 +135,7 @@ class _ChatListScreenState extends State<ChatListScreen> {
                   width: 6,
                   height: 6,
                   decoration: const BoxDecoration(
-                    color: Color(0xFF3797EF),
+                    color: AppColors.blueColor,
                     shape: BoxShape.circle,
                   ),
                 ),
@@ -143,7 +144,7 @@ class _ChatListScreenState extends State<ChatListScreen> {
               Text(
                 title,
                 style: TextStyle(
-                  color: isSelected ? Colors.black : Colors.grey[400],
+                  color: isSelected ? AppColors.blackColor : AppColors.greyColor,
                   fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
                   fontSize: 13,
                 ),
@@ -153,7 +154,7 @@ class _ChatListScreenState extends State<ChatListScreen> {
                 Text(
                   count.toString(),
                   style: TextStyle(
-                    color: isSelected ? Colors.black : Colors.grey[400],
+                    color: isSelected ? AppColors.blackColor : AppColors.greyColor,
                     fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
                     fontSize: 13,
                   ),
@@ -166,103 +167,7 @@ class _ChatListScreenState extends State<ChatListScreen> {
     );
   }
 
-  List<Map<String, dynamic>> _getChatData() {
-    return [
-      {
-        'username': 'p3rspective.siso',
-        'profileImage': 'https://i.pravatar.cc/150?img=1',
-        'message': '',
-        'status': 'Active yesterday',
-        'hasStory': false,
-        'unreadCount': 0,
-        'showCamera': true,
-      },
-      {
-        'username': 'brayen',
-        'profileImage': 'https://i.pravatar.cc/150?img=2',
-        'message': '2 new messages',
-        'status': '3d',
-        'hasStory': false,
-        'unreadCount': 2,
-        'showCamera': true,
-      },
-      {
-        'username': 'Rio Stephen Tjiandra',
-        'profileImage': 'https://i.pravatar.cc/150?img=3',
-        'message': '',
-        'status': 'Active now',
-        'hasStory': true,
-        'unreadCount': 0,
-        'showCamera': true,
-      },
-      {
-        'username': 'MASI Exclusive Content',
-        'profileImage': 'https://i.pravatar.cc/150?img=4',
-        'message': '4+ new messages',
-        'status': '5d',
-        'hasStory': false,
-        'unreadCount': 4,
-        'showCamera': false,
-      },
-      {
-        'username': 'Rita Stock and Random Talk 📣',
-        'profileImage': 'https://i.pravatar.cc/150?img=5',
-        'message': '4+ new messages',
-        'status': '6d',
-        'hasStory': false,
-        'unreadCount': 4,
-        'showCamera': false,
-      },
-      {
-        'username': 'Hafizh Nouval',
-        'profileImage': 'https://i.pravatar.cc/150?img=6',
-        'message': '',
-        'status': 'Active 7m ago',
-        'hasStory': false,
-        'unreadCount': 0,
-        'showCamera': true,
-      },
-      {
-        'username': 'eevs.indonesia',
-        'profileImage': 'https://i.pravatar.cc/150?img=7',
-        'message': '',
-        'status': 'Active 16m ago',
-        'hasStory': true,
-        'isVerified': true,
-        'unreadCount': 0,
-        'showCamera': true,
-      },
-      {
-        'username': 'Taman Wisata Candi Prambanan',
-        'profileImage': 'https://i.pravatar.cc/150?img=8',
-        'message': 'Hai, loket buka setiap hari puk...',
-        'status': '1w',
-        'hasStory': true,
-        'isVerified': true,
-        'unreadCount': 0,
-        'showCamera': true,
-      },
-      {
-        'username': 'borobudurpark',
-        'profileImage': 'https://i.pravatar.cc/150?img=9',
-        'message': 'Hai, loket buka setiap hari pad...',
-        'status': '1w',
-        'hasStory': true,
-        'isVerified': true,
-        'unreadCount': 0,
-        'showCamera': true,
-      },
-      {
-        'username': 'meryyyy.official',
-        'profileImage': 'https://i.pravatar.cc/150?img=10',
-        'message': '',
-        'status': '',
-        'hasStory': false,
-        'unreadCount': 1,
-        'showCamera': true,
-      },
-    ];
-  }
+
 }
 
 // Reusable Chat List Item Component
@@ -310,7 +215,7 @@ class _ChatListItem extends StatelessWidget {
                         child: Text(
                           chat['username'],
                           style: TextStyle(
-                            color: Colors.white,
+                            color: AppColors.whiteColor,
                             fontSize: 14,
                             fontWeight: chat['unreadCount'] > 0
                                 ? FontWeight.bold
@@ -324,7 +229,7 @@ class _ChatListItem extends StatelessWidget {
                         const SizedBox(width: 4),
                         const Icon(
                           Icons.verified,
-                          color: Color(0xFF3797EF),
+                          color: AppColors.blueColor,
                           size: 14,
                         ),
                       ],
@@ -342,8 +247,8 @@ class _ChatListItem extends StatelessWidget {
                               : '${chat['message']} • ${chat['status']}',
                           style: TextStyle(
                             color: chat['unreadCount'] > 0
-                                ? Colors.white
-                                : Colors.grey[500],
+                                ? AppColors.whiteColor
+                                : AppColors.greyColor,
                             fontSize: 13,
                             fontWeight: chat['unreadCount'] > 0
                                 ? FontWeight.w700
@@ -365,7 +270,7 @@ class _ChatListItem extends StatelessWidget {
                 width: 8,
                 height: 8,
                 decoration: const BoxDecoration(
-                  color: Color(0xFF3797EF),
+                  color: AppColors.blueColor,
                   shape: BoxShape.circle,
                 ),
               )
@@ -404,18 +309,14 @@ class _ProfileAvatar extends StatelessWidget {
             ? const LinearGradient(
                 begin: Alignment.topRight,
                 end: Alignment.bottomLeft,
-                colors: [
-                  Color(0xFFF58529),
-                  Color(0xFFDD2A7B),
-                  Color(0xFF8134AF),
-                ],
+                colors: AppColors.storyBorderColor,
               )
             : null,
       ),
       padding: hasStory ? const EdgeInsets.all(2.5) : null,
       child: Container(
         decoration: const BoxDecoration(
-          color: Colors.black,
+          color: AppColors.blackColor,
           shape: BoxShape.circle,
         ),
         padding: hasStory ? const EdgeInsets.all(2.5) : null,
@@ -442,7 +343,7 @@ class ChatDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: AppColors.blackColor,
       appBar: AppBar(title: Text(username)),
       body: Center(child: Text("Chat with $username")),
     );
