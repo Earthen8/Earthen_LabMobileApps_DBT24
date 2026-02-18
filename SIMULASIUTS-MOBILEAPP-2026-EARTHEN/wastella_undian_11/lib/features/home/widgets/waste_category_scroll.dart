@@ -3,6 +3,7 @@ import '../../education/screens/organic_waste_education_screen.dart';
 import '../../education/screens/inorganic_waste_education_screen.dart';
 import '../../education/screens/hazardous_waste_education_screen.dart';
 import '../../education/screens/residual_waste_education_scree.dart';
+import '../../education/screens/paper_waste_education_screen.dart';
 
 class WasteCategoryScroll extends StatelessWidget {
   const WasteCategoryScroll({super.key});
@@ -57,6 +58,13 @@ class WasteCategoryScroll extends StatelessWidget {
                       MaterialPageRoute(
                         builder: (context) =>
                             const HazardousWasteEducationScreen(),
+                      ),
+                    );
+                  } else if (item.label == 'Paper') {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const PaperWasteEducationScreen(),
                       ),
                     );
                   } else if (item.label == 'Residual') {
