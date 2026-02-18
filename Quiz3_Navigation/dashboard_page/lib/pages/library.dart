@@ -167,7 +167,7 @@ class _LibraryPageState extends State<LibraryPage> {
                   : ListView.separated(
                       padding: const EdgeInsets.all(20),
                       itemCount: _filteredBooks.length,
-                      separatorBuilder: (_, __) => const SizedBox(height: 16),
+                      separatorBuilder: (_, _) => const SizedBox(height: 16),
                       itemBuilder: (context, index) {
                         return BookCard(book: _filteredBooks[index]);
                       },
@@ -263,7 +263,7 @@ class BookCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),

@@ -106,7 +106,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: Text(
                       'Selamat Datang',
                       style: TextStyle(
-                        color: Colors.black.withOpacity(0.60),
+                        color: Colors.black.withValues(alpha: 0.60),
                         fontSize: 25,
                         fontFamily: 'Inter',
                         fontWeight: FontWeight.w700,
@@ -130,7 +130,7 @@ class _LoginPageState extends State<LoginPage> {
                         decoration: InputDecoration(
                           labelText: 'Email',
                           labelStyle: TextStyle(
-                            color: Colors.black.withOpacity(0.50),
+                            color: Colors.black.withValues(alpha: 0.50),
                             fontSize: 20,
                             fontFamily: 'Inter',
                             fontWeight: FontWeight.w400,
@@ -140,7 +140,7 @@ class _LoginPageState extends State<LoginPage> {
                             borderRadius: BorderRadius.circular(4),
                             borderSide: BorderSide(
                               width: 2,
-                              color: Colors.black.withOpacity(0.50),
+                              color: Colors.black.withValues(alpha: 0.50),
                             ),
                           ),
                           focusedBorder: const OutlineInputBorder(
@@ -156,7 +156,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           prefixIcon: Icon(
                             Icons.email_outlined,
-                            color: Colors.black.withOpacity(0.5),
+                            color: Colors.black.withValues(alpha: 0.5),
                           ),
                         ),
                       ),
@@ -180,7 +180,7 @@ class _LoginPageState extends State<LoginPage> {
                         decoration: InputDecoration(
                           labelText: 'Password',
                           labelStyle: TextStyle(
-                            color: Colors.black.withOpacity(0.50),
+                            color: Colors.black.withValues(alpha: 0.50),
                             fontSize: 20,
                             fontFamily: 'Inter',
                             fontWeight: FontWeight.w400,
@@ -190,7 +190,7 @@ class _LoginPageState extends State<LoginPage> {
                             borderRadius: BorderRadius.circular(4),
                             borderSide: BorderSide(
                               width: 2,
-                              color: Colors.black.withOpacity(0.50),
+                              color: Colors.black.withValues(alpha: 0.50),
                             ),
                           ),
                           focusedBorder: const OutlineInputBorder(
@@ -206,14 +206,14 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           prefixIcon: Icon(
                             Icons.lock_outline,
-                            color: Colors.black.withOpacity(0.5),
+                            color: Colors.black.withValues(alpha: 0.5),
                           ),
                           suffixIcon: IconButton(
                             icon: Icon(
                               _isPasswordVisible
                                   ? Icons.visibility
                                   : Icons.visibility_off,
-                              color: Colors.black.withOpacity(0.5),
+                              color: Colors.black.withValues(alpha: 0.5),
                             ),
                             onPressed: () => setState(
                               () => _isPasswordVisible = !_isPasswordVisible,
@@ -293,7 +293,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: Text(
                       'Created by Earthen',
                       style: TextStyle(
-                        color: Colors.black.withOpacity(0.50),
+                        color: Colors.black.withValues(alpha: 0.50),
                         fontSize: 15,
                         fontFamily: 'Inter',
                         fontWeight: FontWeight.w400,
