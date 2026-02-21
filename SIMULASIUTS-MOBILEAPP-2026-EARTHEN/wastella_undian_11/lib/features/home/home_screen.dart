@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'widgets/home_top_bar.dart'; // Renamed class is inside this file, although file name is top_bar
+import 'widgets/home_top_bar.dart';
 import 'widgets/wastelly_mascot.dart';
 import 'widgets/waste_category_scroll.dart';
 import 'widgets/your_mission_section.dart';
@@ -35,10 +35,6 @@ class _HomeScreenState extends State<HomeScreen> {
           CustomScrollView(
             slivers: [
               // ── Header Placeholder ─────────────────────────────────────
-              // The header is absolute positioned, but we need space for it.
-              // Actually, better to put the header IN the scroll view if we want it to scroll away?
-              // Design shows the header is huge.
-              // Let's interact properly.
               const SliverToBoxAdapter(
                 child: HomeHeader(userName: 'WasteMate', points: 500),
               ),

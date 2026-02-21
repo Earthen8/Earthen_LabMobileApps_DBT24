@@ -34,6 +34,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
+  flutter_svg: ^2.2.3
 
 dev_dependencies:
   flutter_test:
@@ -61,6 +62,18 @@ flutter:
   assets:
     - assets/images/
     - assets/vectors/
+    - assets/images/organic_education/
+    - assets/images/organic_education/examples/
+    - assets/images/organic_education/organic_info/button/
+    - assets/images/organic_education/myth_fact/
+    - assets/images/organic_education/manage/
+    - assets/images/organic_education/organic_info/images/
+    - assets/images/inorganic_education/
+    - assets/images/inorganic_education/examples/
+    - assets/images/inorganic_education/inorganic_info/button/
+    - assets/images/inorganic_education/myth_fact/
+    - assets/images/inorganic_education/manage/
+    - assets/images/inorganic_education/inorganic_info/images/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

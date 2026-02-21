@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../../education/screens/organic_waste_education_screen.dart';
 import '../../education/screens/inorganic_waste_education_screen.dart';
 import '../../education/screens/hazardous_waste_education_screen.dart';
@@ -27,12 +28,12 @@ class WasteCategoryScroll extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         SizedBox(
-          height: 100, // Slightly taller to accommodate label
+          height: 110,
           child: ListView.separated(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             scrollDirection: Axis.horizontal,
             itemCount: _categories.length,
-            separatorBuilder: (context, index) => const SizedBox(width: 16),
+            separatorBuilder: (context, index) => const SizedBox(width: 36),
             itemBuilder: (context, index) {
               final item = _categories[index];
               return GestureDetector(
@@ -41,7 +42,8 @@ class WasteCategoryScroll extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const WasteEducationScreen(),
+                        builder: (context) =>
+                            const OrganicWasteEducationScreen(),
                       ),
                     );
                   } else if (item.label == 'Inorganic') {
@@ -49,7 +51,7 @@ class WasteCategoryScroll extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) =>
-                            const NonOrganicWasteEducationScreen(),
+                            const InorganicWasteEducationScreen(),
                       ),
                     );
                   } else if (item.label == 'Hazardous') {
@@ -90,32 +92,27 @@ class WasteCategoryScroll extends StatelessWidget {
     _CategoryItem(
       label: 'Organic',
       bgColor: Color(0x302E8B57), // Light Green
-      icon: Icons.eco,
-      iconColor: Color(0xFF2E8B57),
+      svgPath: 'assets/vectors/organic.svg',
     ),
     _CategoryItem(
       label: 'Inorganic',
       bgColor: Color(0x304682B4), // Light Blue
-      icon: Icons.local_drink_outlined,
-      iconColor: Color(0xFF4682B4),
+      svgPath: 'assets/vectors/inorganic.svg',
     ),
     _CategoryItem(
       label: 'Hazardous',
       bgColor: Color(0x1EFF9564), // Light Red/Orange
-      icon: Icons.warning_amber_rounded,
-      iconColor: Color(0xFFFF9564),
+      svgPath: 'assets/vectors/hazardous.svg',
     ),
     _CategoryItem(
       label: 'Paper',
       bgColor: Color(0x1E964B00), // Light Brown
-      icon: Icons.newspaper,
-      iconColor: Color(0xFF964B00),
+      svgPath: 'assets/vectors/paper.svg',
     ),
     _CategoryItem(
       label: 'Residual',
       bgColor: Color(0x4C8E8585), // Light Gray
-      icon: Icons.delete_outline,
-      iconColor: Color(0xFF8E8585),
+      svgPath: 'assets/vectors/residual.svg',
     ),
   ];
 }
@@ -123,14 +120,12 @@ class WasteCategoryScroll extends StatelessWidget {
 class _CategoryItem {
   final String label;
   final Color bgColor;
-  final IconData icon;
-  final Color iconColor;
+  final String svgPath;
 
   const _CategoryItem({
     required this.label,
     required this.bgColor,
-    required this.icon,
-    required this.iconColor,
+    required this.svgPath,
   });
 }
 
@@ -150,10 +145,25 @@ class _CategoryCard extends StatelessWidget {
           decoration: ShapeDecoration(
             color: item.bgColor,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            shadows: const [
+              BoxShadow(
+                color: Color(0x26000000),
+                blurRadius: 7.70,
+                offset: Offset(0, 4),
+                spreadRadius: 0,
+              ),
+            ],
+          ),
+          child: Center(
+            child: SvgPicture.asset(
+              item.svgPath,
+              width: 32,
+              height: 32,
+              fit: BoxFit.contain,
             ),
           ),
-          child: Icon(item.icon, color: item.iconColor, size: 28),
         ),
         const SizedBox(height: 8),
         Text(
@@ -161,9 +171,10 @@ class _CategoryCard extends StatelessWidget {
           textAlign: TextAlign.center,
           style: const TextStyle(
             color: Colors.black,
-            fontSize: 13,
+            fontSize: 15,
             fontFamily: 'Poppins',
             fontWeight: FontWeight.w500,
+            height: 1.47,
           ),
         ),
       ],
